@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#616161"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:padding="16dp"
+        android:paddingTop="30dp"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:id="@+id/edt_latitude"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Vĩ độ"
+            android:maxLength="8"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edt_longitude"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Kinh độ"
+            android:maxLength="8"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/edt_latitude"
+            app:layout_constraintLeft_toRightOf="@id/edt_latitude"
+            app:layout_constraintTop_toTopOf="@+id/edt_latitude" />
+
+        <Button
+            android:id="@+id/button_get_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#949292"
+            android:text="xem thời tiết"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/edt_longitude"
+            app:layout_constraintLeft_toRightOf="@id/edt_longitude"
+            app:layout_constraintTop_toTopOf="@+id/edt_longitude" />
+
+        <RelativeLayout
+            android:id="@+id/weather_today"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edt_latitude">
+
+            <ImageView
+                android:id="@+id/image_weather_today"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <TextView
+                android:id="@+id/text_degree_weather_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/image_weather_today"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/text_weather_today"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_weather_today"
+                android:gravity="center_horizontal"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/text_time_update"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_weather_today"
+                android:gravity="center_horizontal"
+                android:text="" />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rev"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weather_today" />
+
+        <TextView
+            android:id="@+id/text_weather_detail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/border_table"
+            android:padding="16dp"
+            android:text=""
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rev" />
+
+        <TableLayout
+            android:id="@+id/detail_weather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_table"
+            android:padding="16dp"
+            android:stretchColumns="*"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_weather_detail">
+
+            <TableRow android:layout_height="wrap_content">
+
+                <TextView android:text="Bình minh" />
+
+                <TextView android:text="Hoàng hôn" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/text_sunrise"
+                    android:text=""
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text_moonrise"
+                    android:text=""
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow android:layout_height="wrap_content">
+
+                <TextView android:text="Cảm giác như" />
+
+                <TextView android:text="Độ ẩm" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/text_feels_like"
+                    android:text=""
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text_humidity"
+                    android:text=""
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <TableRow android:layout_height="wrap_content">
+
+                <TextView android:text="Áp suất " />
+
+                <TextView android:text="Nhiệt độ khí quyển" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/text_pressure"
+                    android:text=""
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text_dew_point"
+                    android:text=""
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow android:layout_height="wrap_content">
+
+                <TextView android:text="Tốc độ gió" />
+
+                <TextView android:text="Hướng gió" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/text_wind_speed"
+                    android:text=""
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text_wind_deg"
+                    android:text=""
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow android:layout_height="wrap_content">
+
+                <TextView android:text="Gió giật" />
+
+                <TextView android:text="Mây" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/text_wind_gust"
+                    android:text=""
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text_clouds"
+                    android:text=""
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow android:layout_height="wrap_content">
+
+                <TextView android:text="Lượng mưa " />
+
+                <TextView android:text="UV" />
+            </TableRow>
+
+            <TableRow android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text_rain"
+                    android:text=""
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text_uvi"
+                    android:text=""
+                    android:textSize="20sp" />
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
